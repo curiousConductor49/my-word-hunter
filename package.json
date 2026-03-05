@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/curiousConductor49/my-word-hunter#readme",
   "devDependencies": {
+    "html-webpack-plugin": "^5.6.6",
     "webpack": "^5.105.4",
     "webpack-cli": "^6.0.1",
     "webpack-merge": "^6.0.1"
