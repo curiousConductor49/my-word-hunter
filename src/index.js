@@ -2,8 +2,8 @@
 
 // necessary imports
 import './styles.css'
-import magnify from './assets/magnify.svg'
-import theme from './assets/theme-light-dark.svg'
+import magnify from './assets/light-theme-magnify.svg'
+// import theme from './assets/theme-light-dark.svg'
 
 // game data array
 const gameDataArr = [
