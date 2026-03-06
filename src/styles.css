@@ -50,7 +50,7 @@
   
   #word-group span:hover {
     filter: blur(0px);
-    cursor: url(assets/magnify.svg) 0 0, pointer;
+    cursor: url(assets/light-theme-magnify.svg) 0 0, pointer;
   }
   
   #play-game-round-btn {
