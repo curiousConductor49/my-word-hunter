@@ -83,7 +83,7 @@
     border-radius: 5px;
   }
   
-  #app {
+  #game-interface {
     max-width: fit-content;
     margin-inline: auto;
     padding: 2rem;
