@@ -35,7 +35,7 @@ function populateDivsWithData(wordGroupDiv, targetSentenceDiv, arrOfRounds, curr
     targetSentenceDiv.innerHTML = arrOfRounds[currentRound]["complete sentence"].replaceAll(missingWordsRegex, "_");
     
     // populate empty dom container for word group
-    const wordGroupContent = arrOfRounds[currentRound]["word group"]
+    const wordGroupContent = arrOfRounds[currentRound]["dummy words"]
     .map((word) => `<span tabindex="0" class="dummy-word">${word}</span>`);
     const finalContent = arrOfRounds[currentRound]["missing words"].reduce((accumulator, currentValue) => {
         const minIndex = 1;
@@ -68,6 +68,6 @@ function findMissingWord(event, targetSentenceDiv, arrOfRounds, currentRound) {
 // test function calls
 // populateDivsWithData(dummyWordsGroup, targetSentence, gameData, 1);
 
-// wordGroup.addEventListener("click", (event) => {
+// dummyWordsGroup.addEventListener("click", (event) => {
 //   findMissingWord(event, targetSentence, gameData, 1);
 // })
