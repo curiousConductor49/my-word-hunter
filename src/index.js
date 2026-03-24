@@ -10,6 +10,7 @@ import gameData from './gameData.json'
 document.querySelector('#game-interface').innerHTML = `
   <h1>Word Hunter</h1>
   <p id="game-tagline">Hunt the words, complete the sentence!</p>
+  <p id="win-status-message"></p>
 
   <div role="region" id="target-sentence" aria-live="polite"></div>
   <div id="dummy-words-group"></div>
@@ -23,9 +24,8 @@ document.querySelector('#game-interface').innerHTML = `
 // dom elements
 const gameTagline = document.querySelector("#game-tagline");
 const targetSentence = document.querySelector("#target-sentence");
-const wordGroup = document.querySelector("#word-group");
-const playGameRndBtn =  document.querySelector("#play-game-round-btn");
-const gameRoundCompletionBox = document.querySelector("#game-round-completion-box");
+const dummyWordsGroup = document.querySelector("#dummy-words-group");
+const playGameBtn =  document.querySelector("#play-game-btn");
 
 // function definitions
 function populateDivsWithData(wordGroupDiv, targetSentenceDiv, arrOfRounds, currentRound) {
@@ -36,12 +36,12 @@ function populateDivsWithData(wordGroupDiv, targetSentenceDiv, arrOfRounds, curr
     
     // populate empty dom container for word group
     const wordGroupContent = arrOfRounds[currentRound]["word group"]
-    .map((word) => `<span tabindex="0" class="word-group-item">${word}</span>`);
+    .map((word) => `<span tabindex="0" class="dummy-word">${word}</span>`);
     const finalContent = arrOfRounds[currentRound]["missing words"].reduce((accumulator, currentValue) => {
         const minIndex = 1;
         const maxIndex = wordGroupContent.length - 1;
         const randomIndex = Math.floor(Math.random() * (maxIndex - minIndex + 1) + minIndex);
-        accumulator.splice(randomIndex, 0, `<span tabindex="0" class="word-group-item">${currentValue}</span>`);
+        accumulator.splice(randomIndex, 0, `<span tabindex="0" class="target-word">${currentValue}</span>`);
         return accumulator;
     }, wordGroupContent);
     wordGroupDiv.innerHTML = finalContent.join(" ");
@@ -66,7 +66,7 @@ function findMissingWord(event, targetSentenceDiv, arrOfRounds, currentRound) {
 }
 
 // test function calls
-// populateDivsWithData(wordGroup, targetSentence, gameData, 1);
+// populateDivsWithData(dummyWordsGroup, targetSentence, gameData, 1);
 
 // wordGroup.addEventListener("click", (event) => {
 //   findMissingWord(event, targetSentence, gameData, 1);

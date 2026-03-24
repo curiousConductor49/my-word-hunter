@@ -5,100 +5,93 @@
     --dark-background: #000;
   }
   
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Lexend Deca', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: var(--light-background);
+}
+
+h1 {
+  font-size: 3.2em;
+  font-family: 'Poiret One', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: var(--light-primary);
+}
+
+.hidden {
+  display: none;
+}
+
+#game-tagline {
+  font-size: 1.4rem;
+  letter-spacing: 0.6px;
+}
+
+#target-sentence {
+  max-width: fit-content;
+  margin-inline: auto;
+  margin-block: 15px;
+  font-size: 1.6rem;
+  padding-block-end: 15px;
+  border-bottom: 1px solid var(--light-primary);
+}
+
+#dummy-words-group {
+  max-width: 400px;
+  margin-inline: auto;
+  margin-block: 30px;
+  font-size: 1.5rem;
+}
+
+#dummy-words-group span.dummy-word, #dummy-words-group span.target-word {
+  filter: blur(4px);
+  transition: filter 500ms 200ms;
+}
+
+#dummy-words-group span:hover {
+  filter: blur(0px);
+  cursor: url(assets/light-theme-magnify.svg) 0 0, pointer;
+}
+
+#play-game-btn {
+  font-size: 1.8rem;
+  font-family: 'Poiret One', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 20px;
+  padding: 10px;
+  min-width: 150px;
+  max-width: 200px;
+  color: var(--light-primary);
+  border: 2px solid var(--light-primary);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 500ms 700ms, background-color 500ms 500ms;
+}
+
+#play-game-btn:hover {
+  background-color: #006AFF;
+  color: #fff;
+}
+
+#game-interface {
+  max-width: fit-content;
+  margin-inline: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* @media (prefers-color-scheme: dark) {
   body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 320px;
-    min-height: 100vh;
-    font-family: 'Lexend Deca', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: var(--light-background);
+    color: var(--dark-primary);
+    background-color: var(--dark-background);
   }
-  
   h1 {
-    font-size: 3.2em;
-    font-family: 'Poiret One', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: var(--light-primary);
+    color: var(--dark-primary);
   }
-  
-  #game-tagline {
-    font-size: 1.4rem;
-    letter-spacing: 0.6px;
-  }
-  
-  #target-sentence {
-    max-width: fit-content;
-    margin-inline: auto;
-    margin-block: 15px;
-    font-size: 1.6rem;
-    padding-block-end: 15px;
-    border-bottom: 1px solid var(--light-primary);
-  }
-  
-  #word-group {
-    max-width: 400px;
-    margin-inline: auto;
-    margin-block: 30px;
-    font-size: 1.5rem;
-  }
-  
-  #word-group span.word-group-item {
-    filter: blur(4px);
-    transition: filter 500ms 200ms;
-  }
-  
   #word-group span:hover {
-    filter: blur(0px);
-    cursor: url(assets/light-theme-magnify.svg) 0 0, pointer;
+    cursor: url(assets/dark-magnify.svg) 0 0, pointer;
   }
-  
-  #play-game-round-btn {
-    font-size: 1.8rem;
-    font-family: 'Poiret One', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 20px;
-    padding: 10px;
-    min-width: 150px;
-    max-width: 200px;
-    color: var(--light-primary);
-    border: 2px solid var(--light-primary);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: color 500ms 700ms, background-color 500ms 500ms;
-  }
-  
-  #play-game-round-btn:hover {
-    background-color: #006AFF;
-    color: #fff;
-  }
-  
-  .game-completion-box {
-    max-width: fit-content;
-    height: fit-content;
-    margin-inline: auto;
-    padding: 15px;
-    position: absolute;
-    top: 50vh;
-    border: 2px solid var(--light-primary);
-    border-radius: 5px;
-  }
-  
-  #game-interface {
-    max-width: fit-content;
-    margin-inline: auto;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  /* @media (prefers-color-scheme: dark) {
-    body {
-      color: var(--dark-primary);
-      background-color: var(--dark-background);
-    }
-    h1 {
-      color: var(--dark-primary);
-    }
-    #word-group span:hover {
-      cursor: url(assets/dark-magnify.svg) 0 0, pointer;
-    }
-  } */
+} */
