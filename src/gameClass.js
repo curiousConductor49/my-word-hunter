@@ -1,4 +1,4 @@
-class Game {
+export default class Game {
     populateTargetSentenceContainer(gameData, currentRound, sentenceContainer) {
         // populate container for target sentence
         const missingWords = gameData[currentRound]["missing words"].join("|");
@@ -9,7 +9,7 @@ class Game {
     populateDummyWordsContainer(gameData, currentRound, dummyWordsContainer) {
         // populate container for dummy words group
         const dummyWordEls = gameData[currentRound]["dummy words"].map(word => `<span tabindex="0" class="dummy-word">${word}</span>`);
-        const dummyWordsContainer = gameData[currentRound]["missing words"].reduce((accumulator, currentValue) => {
+        const dummyWordsContent = gameData[currentRound]["missing words"].reduce((accumulator, currentValue) => {
             // randomize where the missing words appear
             const minIndex = 1;
             const maxIndex = dummyWordEls.length - 1;
@@ -17,7 +17,7 @@ class Game {
             accumulator.splice(randomIndex, 0, `<span tabindex="0" class="target-word">${currentValue}</span>`);
             return accumulator;
         }, dummyWordEls);
-        dummyWordsContainer.innerHTML = dummyWordsContainer.join(" ");
+        dummyWordsContainer.innerHTML = dummyWordsContent.join(" ");
     }
 
     isWordIsAMissingWord(event, gameData, currentRound) {
