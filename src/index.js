@@ -12,11 +12,9 @@ document.querySelector('#game-interface').innerHTML = `
   <p id="game-tagline">Hunt the words, complete the sentence!</p>
 
   <div role="region" id="target-sentence" aria-live="polite"></div>
-  <div id="word-group"></div>
+  <div id="dummy-words-group"></div>
   
-  <button id="play-game-round-btn">Play</button>
-
-  <dialog class="game-round-completion-box"></dialog>
+  <button id="play-game-btn">Play</button>
 `
 
 // some conditional logic here for the modal
