@@ -3,36 +3,8 @@
 // necessary imports
 import './styles.css'
 import magnify from './assets/light-theme-magnify.svg'
+import gameData from './gameData.json'
 // import theme from './assets/theme-light-dark.svg'
-
-// game data array
-const gameDataArr = [
-    {
-        "complete sentence": "Happiness can be found in the depths of chocolate pudding",
-        "missing words": ["happiness", "found", "depths", "pudding"],
-        "word group": ["Duis", "ac", "velit", "ac", "dui", "bibendum", "rhoncus", "eu", "nec", "urna"],
-    },
-    {
-        "complete sentence": "The fish listened intently to what the frogs had to say",
-        "missing words": ["fish", "what", "frogs", "say"],
-        "word group": ["Praesent", "eget", "elementum", "risus", "nec", "condimentum", "sapien", "Praesent", "dignissim", "augue"],
-    },
-    {
-        "complete sentence": "She dreamed of leaving her law firm to open a portable dog wash",
-        "missing words": ["dreamed", "law", "portable", "wash"],
-        "word group": ["Duis", "ut", "magna", "vitae", "diam", "feugiat", "auctor", "vel", "et", "turpis"],
-    },
-    {
-        "complete sentence": "He was sitting in a trash can with high street class",
-        "missing words": ["sitting", "trash", "high", "class"],
-        "word group": ["In", "rhoncus", "sapien", "a", "mattis", "imperdiet", "erat", "dui", "tincidunt", "magna"],
-    },
-    {
-        "complete sentence": "The bug was having an excellent day until it hit the windshield",
-        "missing words": ["bug", "excellent", "hit", "windshield"],
-        "word group": ["Ut", "finibus", "tincidunt", "lorem", "sed","faucibus", "Donec", "luctus", "feugiat", "enim"],
-    }
-]
 
 // main index.js content
 document.querySelector('#game-interface').innerHTML = `
@@ -109,10 +81,10 @@ function findMissingWord(event, targetSentenceDiv, arrOfRounds, currentRound) {
 }
 
 // test function calls
-// populateDivsWithData(wordGroup, targetSentence, gameDataArr, 1);
+// populateDivsWithData(wordGroup, targetSentence, gameData, 1);
 
 // wordGroup.addEventListener("click", (event) => {
-//   findMissingWord(event, targetSentence, gameDataArr, 1);
+//   findMissingWord(event, targetSentence, gameData, 1);
 // })
 
 // floating pseudocode
