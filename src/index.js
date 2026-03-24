@@ -17,19 +17,6 @@ document.querySelector('#game-interface').innerHTML = `
   <button id="play-game-btn">Play</button>
 `
 
-// some conditional logic here for the modal
-// depending on game round (aka last round or not), content of dialog box will be either
-/* <form>
-  <p id="end-of-round-choice">Would you like to quit or play another round?</p>
-  <div id="round-choices">
-    <label for="yes"><input type="radio" id="yes" value="yes" name="choice">Yes</label>
-    <label for="no"><input type="radio" id="no" value="no" name="choice">No</label>
-  </div>
-</form>
-OR
-<p id="end-of-game-message">Congratulations, you completed all the rounds!</p>
-<button class="return-to-start-btn">Return to start</button> */
-
 // a light/dark theme toggle
 // <div id="toggle-theme"><img id="theme-icon" src=${theme} alt="A sun and crescent moon divided by a diagonal line" width="50px" height="50px"></div>
 
@@ -84,14 +71,3 @@ function findMissingWord(event, targetSentenceDiv, arrOfRounds, currentRound) {
 // wordGroup.addEventListener("click", (event) => {
 //   findMissingWord(event, targetSentence, gameData, 1);
 // })
-
-// floating pseudocode
-// Use a counter to track the rounds of the game, incremented per round via a loop that walks over the array of objects. Inside each iteration, call the populating function and the click checker function and pass them the appropriate parameters for that round.
-
-// For each iteration, if the round is completed (i.e. all missing words have been found) and the loop index is NOT one less than the array length...
-  // Display a modal telling the user they’ve won the round and provide them w/ 2 choices:
-    // - end the game (if so, then close the modal, remove the event listeners, and clear the divs, essentially restoring things back to how they were prior to the play button click) OR
-    // - continue to the next round (if so, then close the modal, and proceed as normal to the next loop iteration)
-// Else if the round is complete and the index counter IS one less than the array length
-  // Display a different modal to inform the user they’ve completed all the rounds, with the singular button option to return to the start
-  // When the button is clicked, empty the divs and make the start-to-play button's clickable and visible again
