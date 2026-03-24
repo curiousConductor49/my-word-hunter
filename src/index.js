@@ -1,11 +1,9 @@
-// to be split into separate modules following ESM and SOLID principles
-
 // necessary imports
 import './styles.css'
 import magnify from './assets/light-theme-magnify.svg'
+// import theme from './assets/theme-light-dark.svg'
 import gameData from './gameData.json'
 import Game from './gameClass.js'
-// import theme from './assets/theme-light-dark.svg'
 
 // main index.js content
 document.querySelector('#game-interface').innerHTML = `
@@ -30,7 +28,18 @@ const playGameBtn =  document.querySelector("#play-game-btn");
 
 // gameplay
 playGameBtn.addEventListener("click", (event) => {
-    const instance = new Game();
-    instance.populateTargetSentenceContainer(gameData, 1, targetSentence);
-    instance.populateDummyWordsContainer(gameData, 1, dummyWordsGroup);
+    // make a new Game object
+    const gameInstance = new Game();
+    gameTagline.classList.add("hidden");
+    playGameBtn.classList.add("hidden");
+    // call its methods to populate the sentence and dummy words containers
+    // NOTE: the current round of the loop is supplied as 1 for testing
+    gameInstance.populateTargetSentenceContainer(gameData, 1, targetSentence);
+    gameInstance.populateDummyWordsContainer(gameData, 1, dummyWordsGroup);
+    // allow for interactability with dummy words container
+    dummyWordsGroup.addEventListener("click", (event) => {
+        if (gameInstance.isWordIsAMissingWord(event, gameData, 1)) {
+            gameInstance.displayFoundMissingWord(event, gameData, targetSentence, 1);
+        }
+    })
 })
