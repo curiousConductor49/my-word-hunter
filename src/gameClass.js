@@ -39,8 +39,8 @@ export default class Game {
         console.log(newSentenceContent);
     }
 
-    announceRoundWin(message) {
-        message.classList.toggle("hidden");
+    toggleBtnVisibility(btn) {
+        btn.classList.toggle("hidden");
     }
 
     resetGameInterface() {}

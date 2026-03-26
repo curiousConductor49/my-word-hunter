@@ -26,7 +26,8 @@ const gameTagline = document.querySelector("#game-tagline");
 const winMessage = document.querySelector("#win-message");
 const targetSentence = document.querySelector("#target-sentence");
 const dummyWordsGroup = document.querySelector("#dummy-words-group");
-const playGameBtn =  document.querySelector("#play-game-btn");
+const playGameBtn = document.querySelector("#play-game-btn");
+const resetGameBtn = document.querySelector("#reset-game-btn");
 
 // gameplay
 playGameBtn.addEventListener("click", (event) => {
@@ -46,11 +47,17 @@ playGameBtn.addEventListener("click", (event) => {
             }
             if (targetSentence.innerText === gameData[i]["complete sentence"]) {
                 // toggle win status message
-                gameInstance.announceRoundWin(winMessage);
+                gameInstance.toggleBtnVisibility(winMessage);
                 if (i !== gameData.length - 1) {
-                    // call container population message after a delay
+                    // call container population methods after a delay to progress to the next round
+                    setTimeout(() => {
+                        gameInstance.toggleBtnVisibility(winMessage);
+                        gameInstance.populateTargetSentenceContainer(gameData, i, targetSentence);
+                        gameInstance.populateDummyWordsContainer(gameData, i + 1, dummyWordsGroup + 1);
+                    }, 700)
                 } else if (i === gameData.length - 1) {
                     // make the "return to start" btn visible
+                    gameInstance.toggleBtnVisibility(resetGameBtn);
                     // attach event listener to it to call method to reset game interface
                 }
             }
