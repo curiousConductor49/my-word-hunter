@@ -15,6 +15,7 @@ document.querySelector('#game-interface').innerHTML = `
   <div id="dummy-words-group"></div>
   
   <button id="play-game-btn">Play</button>
+  <button id="reset-game-btn">Return to start</button>
 `
 
 // a light/dark theme toggle

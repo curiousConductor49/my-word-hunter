@@ -57,7 +57,7 @@ h1 {
   cursor: url(assets/light-theme-magnify.svg) 0 0, pointer;
 }
 
-#play-game-btn {
+#play-game-btn, #reset-game-btn {
   font-size: 1.8rem;
   font-family: 'Poiret One', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   margin: 20px;
@@ -71,7 +71,7 @@ h1 {
   transition: color 500ms 700ms, background-color 500ms 500ms;
 }
 
-#play-game-btn:hover {
+#play-game-btn:hover, #reset-game-btn:hover {
   background-color: #006AFF;
   color: #fff;
 }
