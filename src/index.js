@@ -46,22 +46,30 @@ playGameBtn.addEventListener("click", (event) => {
         }
         if (targetSentence.innerText === gameData[gameInstance.currentRound]["complete sentence"]) {
             // toggle win status message
-            gameInstance.toggleBtnVisibility(winMessage);
+            winMessage.classList.toggle("hidden");
 
             // update current round
             gameInstance.roundCount = 1;
 
-            if (gameInstance.currentRound !== gameData.length - 1) {
+            if (gameInstance.currentRound < gameData.length) {
                 // call container population methods after a delay to progress to the next round
                 setTimeout(() => {
-                    gameInstance.toggleBtnVisibility(winMessage);
+                    winMessage.classList.toggle("hidden");
                     gameInstance.populateTargetSentenceContainer(gameData, gameInstance.currentRound, targetSentence);
                     gameInstance.populateDummyWordsContainer(gameData, gameInstance.currentRound, dummyWordsGroup);
                 }, 1500)
-            } else if (gameInstance.currentRound === gameData.length - 1) {
+            } else if (gameInstance.currentRound === gameData.length) {
                 // make the "return to start" btn visible
-                gameInstance.toggleBtnVisibility(resetGameBtn);
+                resetGameBtn.classList.toggle("hidden");
                 // attach event listener to it to call method to reset game interface
+                resetGameBtn.addEventListener("click", () => {
+                    console.log(gameInstance.currentRound);
+                    winMessage.classList.toggle("hidden");
+                    gameInstance.resetGameInterface(targetSentence, dummyWordsGroup);
+                    resetGameBtn.classList.toggle("hidden");
+                    gameTagline.classList.toggle("hidden");
+                    playGameBtn.classList.toggle("hidden");
+                });
             }
         }
     })

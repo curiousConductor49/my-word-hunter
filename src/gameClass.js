@@ -51,9 +51,8 @@ export default class Game {
         console.log(newSentenceContent);
     }
 
-    toggleBtnVisibility(btn) {
-        btn.classList.toggle("hidden");
+    resetGameInterface(targetSentenceContainer, dummyWordsContainer) {
+        targetSentenceContainer.innerHTML = "";
+        dummyWordsContainer.innerHTML = "";
     }
-
-    resetGameInterface() {}
 }
