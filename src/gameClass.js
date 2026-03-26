@@ -39,7 +39,9 @@ export default class Game {
         console.log(newSentenceContent);
     }
 
-    announceRoundWin() {}
+    announceRoundWin(message) {
+        message.classList.toggle("hidden");
+    }
 
     resetGameInterface() {}
 }

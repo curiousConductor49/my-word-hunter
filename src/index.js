@@ -9,13 +9,13 @@ import Game from './gameClass.js'
 document.querySelector('#game-interface').innerHTML = `
   <h1>Word Hunter</h1>
   <p id="game-tagline">Hunt the words, complete the sentence!</p>
-  <p id="win-status-message"></p>
+  <p id="win-message" class="hidden">You won the round!</p>
 
   <div role="region" id="target-sentence" aria-live="polite"></div>
   <div id="dummy-words-group"></div>
   
   <button id="play-game-btn">Play</button>
-  <button id="reset-game-btn">Return to start</button>
+  <button id="reset-game-btn" class="hidden">Return to start</button>
 `
 
 // a light/dark theme toggle
@@ -23,6 +23,7 @@ document.querySelector('#game-interface').innerHTML = `
 
 // dom elements
 const gameTagline = document.querySelector("#game-tagline");
+const winMessage = document.querySelector("#win-message");
 const targetSentence = document.querySelector("#target-sentence");
 const dummyWordsGroup = document.querySelector("#dummy-words-group");
 const playGameBtn =  document.querySelector("#play-game-btn");
@@ -41,18 +42,20 @@ playGameBtn.addEventListener("click", (event) => {
         // allow for interactability with dummy words container
         dummyWordsGroup.addEventListener("click", (event) => {
             if (gameInstance.isWordIsAMissingWord(event, gameData, i)) {
-                gameInstance.displayFoundMissingWord(event, gameData, targetSentence, 1);
+                gameInstance.displayFoundMissingWord(event, gameData, targetSentence, i);
+            }
+            if (targetSentence.innerText === gameData[i]["complete sentence"]) {
+                // toggle win status message
+                gameInstance.announceRoundWin(winMessage);
+                if (i !== gameData.length - 1) {
+                    // call container population message after a delay
+                } else if (i === gameData.length - 1) {
+                    // make the "return to start" btn visible
+                    // attach event listener to it to call method to reset game interface
+                }
             }
         })
-        if (targetSentence.innerText === gameData[i]["complete sentence"]) {
-            // toggle win status message
-            if (i !== gameData.length - 1) {
-                // call container population message after a delay
-            } else if (i === gameData.length - 1) {
-                // make the "return to start" btn visible
-                // attach event listener to it to call method to reset game interface
-            }
-        }
+        
     }
     
 })
