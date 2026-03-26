@@ -1,7 +1,7 @@
 [
     {
         "complete sentence": "Happiness can be found in the depths of chocolate pudding",
-        "missing words": ["happiness", "found", "depths", "pudding"],
+        "missing words": ["Happiness", "found", "depths", "pudding"],
         "dummy words": ["Duis", "ac", "velit", "ac", "dui", "bibendum", "rhoncus", "eu", "nec", "urna"]
     },
     {
