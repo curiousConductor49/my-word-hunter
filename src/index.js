@@ -36,33 +36,34 @@ playGameBtn.addEventListener("click", (event) => {
     gameTagline.classList.add("hidden");
     playGameBtn.classList.add("hidden");
     // call its methods to populate the sentence and dummy words containers
-    // NOTE: the current round of the loop is supplied as 1 for testing
-    for (let i = 0; i < gameData.length; i++) {
-        gameInstance.populateTargetSentenceContainer(gameData, i, targetSentence);
-        gameInstance.populateDummyWordsContainer(gameData, i, dummyWordsGroup);
-        // allow for interactability with dummy words container
-        dummyWordsGroup.addEventListener("click", (event) => {
-            if (gameInstance.isWordIsAMissingWord(event, gameData, i)) {
-                gameInstance.displayFoundMissingWord(event, gameData, targetSentence, i);
+    gameInstance.populateTargetSentenceContainer(gameData, gameInstance.currentRound, targetSentence);
+    gameInstance.populateDummyWordsContainer(gameData, gameInstance.currentRound, dummyWordsGroup);
+
+    // allow for interactability with dummy words container
+    dummyWordsGroup.addEventListener("click", (event) => {
+        if (gameInstance.isWordIsAMissingWord(event, gameData, gameInstance.currentRound)) {
+            gameInstance.displayFoundMissingWord(event, gameData, targetSentence, gameInstance.currentRound);
+        }
+        if (targetSentence.innerText === gameData[gameInstance.currentRound]["complete sentence"]) {
+            // toggle win status message
+            gameInstance.toggleBtnVisibility(winMessage);
+
+            // update current round
+            gameInstance.roundCount = 1;
+
+            if (gameInstance.currentRound !== gameData.length - 1) {
+                // call container population methods after a delay to progress to the next round
+                setTimeout(() => {
+                    gameInstance.toggleBtnVisibility(winMessage);
+                    gameInstance.populateTargetSentenceContainer(gameData, gameInstance.currentRound, targetSentence);
+                    gameInstance.populateDummyWordsContainer(gameData, gameInstance.currentRound, dummyWordsGroup);
+                }, 1500)
+            } else if (gameInstance.currentRound === gameData.length - 1) {
+                // make the "return to start" btn visible
+                gameInstance.toggleBtnVisibility(resetGameBtn);
+                // attach event listener to it to call method to reset game interface
             }
-            if (targetSentence.innerText === gameData[i]["complete sentence"]) {
-                // toggle win status message
-                gameInstance.toggleBtnVisibility(winMessage);
-                if (i !== gameData.length - 1) {
-                    // call container population methods after a delay to progress to the next round
-                    setTimeout(() => {
-                        gameInstance.toggleBtnVisibility(winMessage);
-                        gameInstance.populateTargetSentenceContainer(gameData, i, targetSentence);
-                        gameInstance.populateDummyWordsContainer(gameData, i + 1, dummyWordsGroup + 1);
-                    }, 700)
-                } else if (i === gameData.length - 1) {
-                    // make the "return to start" btn visible
-                    gameInstance.toggleBtnVisibility(resetGameBtn);
-                    // attach event listener to it to call method to reset game interface
-                }
-            }
-        })
-        
-    }
+        }
+    })
     
 })
