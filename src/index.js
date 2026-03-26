@@ -63,7 +63,6 @@ playGameBtn.addEventListener("click", (event) => {
                 resetGameBtn.classList.toggle("hidden");
                 // attach event listener to it to call method to reset game interface
                 resetGameBtn.addEventListener("click", () => {
-                    console.log(gameInstance.currentRound);
                     winMessage.classList.toggle("hidden");
                     gameInstance.resetGameInterface(targetSentence, dummyWordsGroup);
                     resetGameBtn.classList.toggle("hidden");
