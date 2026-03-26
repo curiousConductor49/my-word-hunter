@@ -34,12 +34,24 @@ playGameBtn.addEventListener("click", (event) => {
     playGameBtn.classList.add("hidden");
     // call its methods to populate the sentence and dummy words containers
     // NOTE: the current round of the loop is supplied as 1 for testing
-    gameInstance.populateTargetSentenceContainer(gameData, 1, targetSentence);
-    gameInstance.populateDummyWordsContainer(gameData, 1, dummyWordsGroup);
-    // allow for interactability with dummy words container
-    dummyWordsGroup.addEventListener("click", (event) => {
-        if (gameInstance.isWordIsAMissingWord(event, gameData, 1)) {
-            gameInstance.displayFoundMissingWord(event, gameData, targetSentence, 1);
+    for (let i = 0; i < gameData.length; i++) {
+        gameInstance.populateTargetSentenceContainer(gameData, i, targetSentence);
+        gameInstance.populateDummyWordsContainer(gameData, i, dummyWordsGroup);
+        // allow for interactability with dummy words container
+        dummyWordsGroup.addEventListener("click", (event) => {
+            if (gameInstance.isWordIsAMissingWord(event, gameData, i)) {
+                gameInstance.displayFoundMissingWord(event, gameData, targetSentence, 1);
+            }
+        })
+        if (targetSentence.innerText === gameData[i]["complete sentence"]) {
+            // toggle win status message
+            if (i !== gameData.length - 1) {
+                // call container population message after a delay
+            } else if (i === gameData.length - 1) {
+                // make the "return to start" btn visible
+                // attach event listener to it to call method to reset game interface
+            }
         }
-    })
+    }
+    
 })
