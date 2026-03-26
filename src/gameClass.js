@@ -1,4 +1,16 @@
 export default class Game {
+    constructor() {
+        this.currentRound = 0;
+    }
+
+    get roundCount() {
+        return this.currentRound;
+    }
+
+    set roundCount(number) {
+        this.currentRound += number;
+    }
+
     populateTargetSentenceContainer(gameData, currentRound, sentenceContainer) {
         // populate container for target sentence
         const missingWords = gameData[currentRound]["missing words"].join("|");
