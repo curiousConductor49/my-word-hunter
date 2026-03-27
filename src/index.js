@@ -41,6 +41,7 @@ playGameBtn.addEventListener("click", (event) => {
 
     // allow for interactability with dummy words container
     dummyWordsGroup.addEventListener("click", (event) => {
+        console.log(gameInstance.currentRound);
         if (gameInstance.isWordIsAMissingWord(event, gameData, gameInstance.currentRound)) {
             gameInstance.displayFoundMissingWord(event, gameData, targetSentence, gameInstance.currentRound);
         }
@@ -48,17 +49,16 @@ playGameBtn.addEventListener("click", (event) => {
             // toggle win status message
             winMessage.classList.toggle("hidden");
 
-            // update current round
-            gameInstance.roundCount = 1;
-
-            if (gameInstance.currentRound < gameData.length) {
+            if (gameInstance.currentRound < gameData.length - 1) {
+                // update current round
+                gameInstance.roundCount = 1;
                 // call container population methods after a delay to progress to the next round
                 setTimeout(() => {
                     winMessage.classList.toggle("hidden");
                     gameInstance.populateTargetSentenceContainer(gameData, gameInstance.currentRound, targetSentence);
                     gameInstance.populateDummyWordsContainer(gameData, gameInstance.currentRound, dummyWordsGroup);
                 }, 1500)
-            } else if (gameInstance.currentRound === gameData.length) {
+            } else if (gameInstance.currentRound === gameData.length - 1) {
                 // make the "return to start" btn visible
                 resetGameBtn.classList.toggle("hidden");
                 // attach event listener to it to call method to reset game interface
