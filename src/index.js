@@ -33,18 +33,21 @@ const resetGameBtn = document.querySelector("#reset-game-btn");
 playGameBtn.addEventListener("click", (event) => {
     // make a new Game object
     const gameInstance = new Game();
+    // hide the tagline and play button
     gameTagline.classList.add("hidden");
     playGameBtn.classList.add("hidden");
-    // call its methods to populate the sentence and dummy words containers
+    // call the Game instance's methods to populate the sentence and dummy words containers
     gameInstance.populateTargetSentenceContainer(gameData, gameInstance.currentRound, targetSentence);
     gameInstance.populateDummyWordsContainer(gameData, gameInstance.currentRound, dummyWordsGroup);
 
     // allow for interactability with dummy words container
     dummyWordsGroup.addEventListener("click", (event) => {
         console.log(gameInstance.currentRound);
+        // check if the clicked word is a missing one for the JSON object for the current round
         if (gameInstance.isWordIsAMissingWord(event, gameData, gameInstance.currentRound)) {
             gameInstance.displayFoundMissingWord(event, gameData, targetSentence, gameInstance.currentRound);
         }
+        // check if all words have been found for the round
         if (targetSentence.innerText === gameData[gameInstance.currentRound]["complete sentence"]) {
             // toggle win status message
             winMessage.classList.toggle("hidden");
