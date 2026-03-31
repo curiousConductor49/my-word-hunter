@@ -50,9 +50,4 @@ export default class Game {
 
         console.log(newSentenceContent);
     }
-
-    resetGameInterface(targetSentenceContainer, dummyWordsContainer) {
-        targetSentenceContainer.innerHTML = "";
-        dummyWordsContainer.innerHTML = "";
-    }
 }

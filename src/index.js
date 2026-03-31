@@ -1,9 +1,8 @@
 // necessary imports
 import './styles.css'
-import magnify from './assets/light-theme-magnify.svg'
+// import magnify from './assets/light-theme-magnify.svg'
 // import theme from './assets/theme-light-dark.svg'
-import gameData from './gameData.json'
-import Game from './gameClass.js'
+import playNewGame from './playNewGame.js'
 
 // main index.js content
 document.querySelector('#game-interface').innerHTML = `
@@ -29,51 +28,21 @@ const dummyWordsGroup = document.querySelector("#dummy-words-group");
 const playGameBtn = document.querySelector("#play-game-btn");
 const resetGameBtn = document.querySelector("#reset-game-btn");
 
+// attach event listener to it to call method to reset game interface
+resetGameBtn.addEventListener("click", () => {
+    winMessage.classList.toggle("hidden");
+    targetSentence.innerHTML = "";
+    dummyWordsGroup.innerHTML = "";
+    resetGameBtn.classList.toggle("hidden");
+    gameTagline.classList.toggle("hidden");
+    playGameBtn.classList.toggle("hidden");
+});
+
 // gameplay
-playGameBtn.addEventListener("click", (event) => {
-    // make a new Game object
-    const gameInstance = new Game();
+playGameBtn.addEventListener("click", () => {
     // hide the tagline and play button
     gameTagline.classList.add("hidden");
     playGameBtn.classList.add("hidden");
-    // call the Game instance's methods to populate the sentence and dummy words containers
-    gameInstance.populateTargetSentenceContainer(gameData, gameInstance.currentRound, targetSentence);
-    gameInstance.populateDummyWordsContainer(gameData, gameInstance.currentRound, dummyWordsGroup);
-
-    // allow for interactability with dummy words container
-    dummyWordsGroup.addEventListener("click", (event) => {
-        console.log(gameInstance.currentRound);
-        // check if the clicked word is a missing one for the JSON object for the current round
-        if (gameInstance.isWordIsAMissingWord(event, gameData, gameInstance.currentRound)) {
-            gameInstance.displayFoundMissingWord(event, gameData, targetSentence, gameInstance.currentRound);
-        }
-        // check if all words have been found for the round
-        if (targetSentence.innerText === gameData[gameInstance.currentRound]["complete sentence"]) {
-            // toggle win status message
-            winMessage.classList.toggle("hidden");
-
-            if (gameInstance.currentRound < gameData.length - 1) {
-                // update current round
-                gameInstance.roundCount = 1;
-                // call container population methods after a delay to progress to the next round
-                setTimeout(() => {
-                    winMessage.classList.toggle("hidden");
-                    gameInstance.populateTargetSentenceContainer(gameData, gameInstance.currentRound, targetSentence);
-                    gameInstance.populateDummyWordsContainer(gameData, gameInstance.currentRound, dummyWordsGroup);
-                }, 1500)
-            } else if (gameInstance.currentRound === gameData.length - 1) {
-                // make the "return to start" btn visible
-                resetGameBtn.classList.toggle("hidden");
-                // attach event listener to it to call method to reset game interface
-                resetGameBtn.addEventListener("click", () => {
-                    winMessage.classList.toggle("hidden");
-                    gameInstance.resetGameInterface(targetSentence, dummyWordsGroup);
-                    resetGameBtn.classList.toggle("hidden");
-                    gameTagline.classList.toggle("hidden");
-                    playGameBtn.classList.toggle("hidden");
-                });
-            }
-        }
-    })
-    
+    // call function to play a new game
+    playNewGame(targetSentence, dummyWordsGroup, winMessage, resetGameBtn);
 })
