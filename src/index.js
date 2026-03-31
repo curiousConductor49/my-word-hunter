@@ -2,6 +2,7 @@
 import './styles.css'
 // import magnify from './assets/light-theme-magnify.svg'
 // import theme from './assets/theme-light-dark.svg'
+import Game from './gameClass.js'
 import playNewGame from './playNewGame.js'
 
 // main index.js content
@@ -28,7 +29,8 @@ const dummyWordsGroup = document.querySelector("#dummy-words-group");
 const playGameBtn = document.querySelector("#play-game-btn");
 const resetGameBtn = document.querySelector("#reset-game-btn");
 
-// attach event listener to it to call method to reset game interface
+
+// attach event listener to reset game interface
 resetGameBtn.addEventListener("click", () => {
     winMessage.classList.toggle("hidden");
     targetSentence.innerHTML = "";
