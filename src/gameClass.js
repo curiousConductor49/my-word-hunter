@@ -29,7 +29,7 @@ export default class Game {
         // find and replace the missing word with its placeholder in the sentence
         const wordIndex = gameData[currentRound]["complete sentence"]
         .split(" ")
-        .findIndex((word) => word === event.target.innerText);
+        .findIndex((word) => word === event.target.textContent);
         const newSentenceContent = targetSentenceContainer.textContent
         .split(" ")
         .toSpliced(wordIndex, 1, event.target.textContent)
