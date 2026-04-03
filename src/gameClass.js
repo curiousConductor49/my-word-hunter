@@ -1,24 +1,13 @@
 export default class Game {
-    constructor() {
-        this.currentRound = 0;
-    }
 
-    get roundCount() {
-        return this.currentRound;
-    }
-
-    set roundCount(number) {
-        this.currentRound += number;
-    }
-
-    populateTargetSentenceContainer(gameData, currentRound, sentenceContainer) {
+    static populateTargetSentenceContainer(gameData, currentRound, sentenceContainer) {
         // populate container for target sentence
         const missingWords = gameData[currentRound]["missing words"].join("|");
         const missingWordsRegex = new RegExp(missingWords, "gi");
         sentenceContainer.innerHTML = gameData[currentRound]["complete sentence"].replaceAll(missingWordsRegex, "...");
     }
 
-    populateDummyWordsContainer(gameData, currentRound, dummyWordsContainer) {
+    static populateDummyWordsContainer(gameData, currentRound, dummyWordsContainer) {
         // populate container for dummy words group
         const dummyWordEls = gameData[currentRound]["dummy words"].map(word => `<span tabindex="0" class="dummy-word">${word}</span>`);
         const dummyWordsContent = gameData[currentRound]["missing words"].reduce((accumulator, currentValue) => {
@@ -32,11 +21,11 @@ export default class Game {
         dummyWordsContainer.innerHTML = dummyWordsContent.join(" ");
     }
 
-    isWordIsAMissingWord(event, gameData, currentRound) {
+    static isWordIsAMissingWord(event, gameData, currentRound) {
         return gameData[currentRound]["missing words"].includes(event.target.innerText) ? true : false;
     }
 
-    displayFoundMissingWord(event, gameData, targetSentenceContainer, currentRound) {
+    static displayFoundMissingWord(event, gameData, targetSentenceContainer, currentRound) {
         // find and replace the missing word with its placeholder in the sentence
         const wordIndex = gameData[currentRound]["complete sentence"]
         .split(" ")
